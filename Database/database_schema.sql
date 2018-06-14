@@ -1,0 +1,90 @@
+CREATE DATABASE DrinkPolice;
+USE DrinkPolice;
+
+CREATE TABLE IF NOT EXISTS CategoryA (
+    ID INT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE IF NOT EXISTS CategoryB (
+    ID INT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE IF NOT EXISTS CategoryC (
+    ID INT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE IF NOT EXISTS StartIndex (
+    CategoryName VARCHAR(30),
+    StartValue INT DEFAULT 0,
+    PRIMARY KEY (CategoryName)
+);
+
+CREATE TABLE IF NOT EXISTS Stations (
+    Name VARCHAR(100) NOT NULL,
+    Address VARCHAR(200),
+    PRIMARY KEY (Name)
+);
+
+CREATE TABLE IF NOT EXISTS Admins (
+    ID INT,
+    Name VARCHAR(40),
+    Password VARCHAR(40),
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE IF NOT EXISTS RandomListA (
+    ID INT,
+    Free BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (ID) REFERENCES CategoryA(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS RandomListB (
+    ID INT,
+    Free BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (ID) REFERENCES CategoryB(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS RandomListC (
+    ID INT,
+    Free BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (ID) REFERENCES CategoryC(ID) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS AssignedA (
+    ID INT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    Date VARCHAR(10) NOT NULL,
+    StationName varchar(100) NOT NULL,
+    StationAddress VARCHAR(200),
+    FOREIGN KEY (StationName) REFERENCES Stations(Name) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS AssignedB (
+    ID INT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    Date VARCHAR(10) NOT NULL,
+    StationName varchar(100) NOT NULL,
+    StationAddress VARCHAR(200),
+    FOREIGN KEY (StationName) REFERENCES Stations(Name) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS AssignedC (
+    ID INT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    Date VARCHAR(10) NOT NULL,
+    StationName varchar(100) NOT NULL,
+    StationAddress VARCHAR(200),
+    FOREIGN KEY (StationName) REFERENCES Stations(Name) ON DELETE CASCADE
+);
