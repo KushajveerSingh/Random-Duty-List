@@ -1,5 +1,5 @@
 # Traffic
-index.php -> Main login page
-main_page.php -> Next Page
-server_init.php -> Server Configuration
-generateList.php AND getTodaysList.php -> Contain a Date function
+index.php -> Main login page</br>
+main_page.php -> Next Page</br>
+server_init.php -> Server Configuration</br>
+generateList.php AND getTodaysList.php -> Contain a Date function</br>
