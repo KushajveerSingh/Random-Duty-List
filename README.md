@@ -13,6 +13,7 @@ This software is made for Chndigarh police (India). So, they had like 20 station
 * 'index.php' is the main login page that would open as the home page.
 * Then you would be redirected to 'main_page.php'
 * From there on every button that is available would have a seperate page of it's own by the same name
+* Also refer to the Database folder and view the README to get familiar with the database schema used for this Project.
 
 ## License
 MIT License
