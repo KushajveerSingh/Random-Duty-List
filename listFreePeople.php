@@ -1,47 +1,45 @@
 <?php
-session_start();
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    require 'server_init.php';
-    $currentDate = date("Y/m/d/h/i");
+    session_start();
 
-    if ($_POST['logout']) {
-        $_SESSION['loggedin'] = false;
-        header("Location:index.php");
-        exit();
-    }
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        require 'server_init.php';
 
-    $sql1 = "SELECT ID, FirstName, LastName FROM CategoryA WHERE ID NOT IN (SELECT ID FROM AssignedA WHERE Date='$currentDate')";
-    $sql2 = "SELECT ID, FirstName, LastName FROM CategoryB WHERE ID NOT IN (SELECT ID FROM AssignedB WHERE Date='$currentDate')";
-    $sql3 = "SELECT ID, FirstName, LastName FROM CategoryC WHERE ID NOT IN (SELECT ID FROM AssignedB WHERE Date='$currentDate')";
-    $result1 = mysqli_query($conn, $sql1);
-    $result2 = mysqli_query($conn, $sql2);
-    $result3 = mysqli_query($conn, $sql3);
-    ?>
+        if ($_POST['logout']) {
+            $_SESSION['loggedin'] = false;
+            header("Location:index.php");
+            exit();
+        }
 
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset = "utf-8">
-            <meta name+"viewport" content="width=device-width">
-            <meta name="description" content="Admin Login page for the project">
-            <meta name="author" content="Kushajveer Singh">
-            <title>List Free People</title>
-            <link rel="stylesheet" href="./CSS/style.css">
-        </head>
-        <body>
-            <header>
-                <center>
-                    <img src="./Images/main.png" alt="Chandigarh Police Logo" style="width:70px; height:90px; float:left; padding-left:25%">
-                    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                        <input type="submit" name="logout" value="Logout" class="logoutButton">
-                    </form>
-                    <h1 style="color:red; font-size:45px">Chandigarh Police</h1>
-                </center>
-            </header>
-        </body>
-    </html>
-
-    <?php
+        $sql1 = "SELECT ID, FirstName, LastName FROM CategoryA WHERE ID NOT IN (SELECT ID FROM AssignedA WHERE Date='$currentDate')";
+        $sql2 = "SELECT ID, FirstName, LastName FROM CategoryB WHERE ID NOT IN (SELECT ID FROM AssignedB WHERE Date='$currentDate')";
+        $sql3 = "SELECT ID, FirstName, LastName FROM CategoryC WHERE ID NOT IN (SELECT ID FROM AssignedB WHERE Date='$currentDate')";
+        $result1 = mysqli_query($conn, $sql1);
+        $result2 = mysqli_query($conn, $sql2);
+        $result3 = mysqli_query($conn, $sql3);
+        ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta name+"viewport" content="width=device-width">
+        <meta name="description" content="Admin Login page for the project">
+        <meta name="author" content="Kushajveer Singh">
+        <title>List Free People</title>
+        <link rel="stylesheet" href="./CSS/style.css">
+    </head>
+    <body>
+        <header>
+            <center>
+                <img src="./Images/main.png" alt="Chandigarh Police Logo" style="width:70px; height:90px; float:left; padding-left:25%">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    <input type="submit" name="logout" value="Logout" class="logoutButton">
+                </form>
+                <h1 style="color:red; font-size:45px">Chandigarh Police</h1>
+            </center>
+        </header>
+    </body>
+</html>
+<?php
     echo "<center>";
     echo "<h2>For CategoryA</h2></br>";
     echo "<table border=1>";
@@ -114,7 +112,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     echo "</footer>";
 }
 else {
-    header("Location:index.php");
-    exit();
+header("Location:index.php");
+exit();
 }
 ?>

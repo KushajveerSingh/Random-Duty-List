@@ -1,26 +1,27 @@
 <?php
-session_start();
-require 'server_init.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $adminId = $_POST['adminId'];
-    $adminPass = $_POST['adminPass'];
-    $sql = "SELECT * FROM Admins WHERE ID=$adminId AND Password=$adminPass";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) == 1) {
-        $_SESSION['loggedin'] = true;
-        header("Location:main_page.php");
-        exit();
-    }
-    else {
-        $_SESSION['loggedin'] = false;
-        echo '<script language="javascript">';
-        echo 'alert("Incorrect Details Entered")';
-        echo '</script>';
-    }
+    session_start();
+    require 'server_init.php';
 
-}
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $adminId = $_POST['adminId'];
+        $adminPass = $_POST['adminPass'];
 
-?>
+        $sql = "SELECT * FROM Admins WHERE ID=$adminId AND Password=$adminPass";
+        $result = mysqli_query($conn, $sql);
+        // Check admin present or not
+        if (mysqli_num_rows($result) == 1) {
+            $_SESSION['loggedin'] = true;
+            header("Location:main_page.php");
+            exit();
+        }
+        else {
+            $_SESSION['loggedin'] = false;
+            echo '<script language="javascript">';
+            echo 'alert("Incorrect Details Entered")';
+            echo '</script>';
+        }
+    }
+    ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,10 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <section class="rdl">
             <div>
-                <center><h1 style="font-size:40px; padding-top:30px">RANDOM DUTY LIST</h1></center>
+                <center>
+                    <h1 style="font-size:40px; padding-top:30px">RANDOM DUTY LIST</h1>
+                </center>
             </div>
         </section>
-
         <section id="loginForm" style="margin-top:80px; padding-left:25%; font-size:20px" class="formView">
             <div class="container">
                 <h1>Admin Login</h1>
@@ -63,9 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
             </div>
         </section>
-
+        
         <footer>
-                <p>Punjab Engineering College, Sector-12, Chandigarh</p>
+            <p>Punjab Engineering College, Sector-12, Chandigarh</p>
         </footer>
     </body>
 </html>
